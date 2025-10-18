@@ -31,6 +31,7 @@ cd pysatl-tsp
 
 ```bash
 poetry install --with dev
+poetry build
 ```
 
 4) Install library
