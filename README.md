@@ -37,6 +37,7 @@ poetry install --with dev
 
 ```bash
 NAME/bin/python3.12 -m pip install /dist/pysatl_tsp-0.1.0-cp312-cp312-manylinux_2_39_x86_64.whl
+NAME/bin/python3.12 -m pip install websockets
 ```
 
 
