@@ -1,0 +1,157 @@
+[1.2, 2.2, 3.2, 4.2, 5.2, 6.2, 7.2, 8.2, 9.2, 10.2, 11.2, 12.2, 13.2, 14.2, 15.2, 16.2, 17.2, 18.2, 19.2, 20.2]
+1.2 2.2 3.2 4.2 5.2 6.2 7.2 8.2 9.2 10.2 11.2 12.2 13.2 14.2 15.2 16.2 17.2 18.2 19.2 20.2 
+-------------------------------------------
+
+opcode[26].specializable : 1
+opcode[107].specializable : 1
+opcode[27].specializable : 1
+opcode[123].specializable : 1
+opcode[25].specializable : 1
+opcode[60].specializable : 1
+opcode[92].specializable : 1
+opcode[93].specializable : 1
+opcode[95].specializable : 1
+opcode[106].specializable : 1
+opcode[107].specializable : 1
+opcode[116].specializable : 1
+opcode[122].specializable : 1
+opcode[123].specializable : 1
+opcode[141].specializable : 1
+opcode[171].specializable : 1
+Calls to PyEval_EvalDefault: 0
+Calls to Python functions inlined: 0
+Frames pushed: 0
+Frame objects created: 0
+Calls via PyEval_EvalFrame[0] : 0
+Calls via PyEval_EvalFrame[1] : 0
+Calls via PyEval_EvalFrame[2] : 0
+Calls via PyEval_EvalFrame[3] : 0
+Calls via PyEval_EvalFrame[4] : 0
+Calls via PyEval_EvalFrame[5] : 0
+Calls via PyEval_EvalFrame[6] : 0
+Calls via PyEval_EvalFrame[7] : 0
+Calls via PyEval_EvalFrame[8] : 0
+Calls via PyEval_EvalFrame[9] : 0
+Object allocations from freelist: 0
+Object frees to freelist: 0
+Object allocations: 0
+Object allocations to 512 bytes: 0
+Object allocations to 4 kbytes: 0
+Object allocations over 4 kbytes: 0
+Object frees: 0
+Object new values: 0
+Object interpreter increfs: 0
+Object interpreter decrefs: 0
+Object increfs: 0
+Object decrefs: 0
+Object materialize dict (on request): 0
+Object materialize dict (new key): 0
+Object materialize dict (too big): 0
+Object materialize dict (str subclass): 0
+Object method cache hits: 0
+Object method cache misses: 0
+Object method cache collisions: 0
+Object method cache dunder hits: 0
+Object method cache dunder misses: 0
+
+=================================================================
+==11485==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 413 byte(s) in 2 object(s) allocated from:
+    #0 0x74dcf1efd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x5849e8c998a5 in _PyMem_RawMalloc Objects/obmalloc.c:45
+    #2 0x5849e8c9b292 in _PyMem_DebugRawAlloc Objects/obmalloc.c:2096
+    #3 0x5849e8c9b3a9 in _PyMem_DebugRawMalloc Objects/obmalloc.c:2129
+    #4 0x5849e8c9b3d3 in _PyMem_DebugMalloc Objects/obmalloc.c:2281
+    #5 0x5849e8c9ed03 in PyMem_Malloc Objects/obmalloc.c:703
+    #6 0x74dcf10d02cb in lib_build_cpython_func (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x262cb) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #7 0x74dcf10d0818 in lib_build_and_cache_attr (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x26818) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #8 0x74dcf10d12fc in lib_getattr (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x272fc) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #9 0x5849e8c978a8 in _PyObject_LookupAttr Objects/object.c:1124
+    #10 0x5849e8edbf88 in import_from Python/ceval.c:2535
+    #11 0x5849e8f482a3 in _PyEval_EvalFrameDefault Python/bytecodes.c:2151
+    #12 0x5849e8f8309e in _PyEval_EvalFrame Include/internal/pycore_ceval.h:89
+    #13 0x5849e8f833cf in _PyEval_Vector Python/ceval.c:1685
+    #14 0x5849e8f8370b in PyEval_EvalCode Python/ceval.c:580
+    #15 0x5849e90e3be1 in run_eval_code_obj Python/pythonrun.c:1757
+    #16 0x5849e90e3df8 in run_mod Python/pythonrun.c:1778
+    #17 0x5849e90e73bc in pyrun_file Python/pythonrun.c:1674
+    #18 0x5849e90ec12c in _PyRun_SimpleFileObject Python/pythonrun.c:459
+    #19 0x5849e90ec411 in _PyRun_AnyFileObject Python/pythonrun.c:78
+    #20 0x5849e917e1d1 in pymain_run_file_obj Modules/main.c:361
+    #21 0x5849e917e4ab in pymain_run_file Modules/main.c:380
+    #22 0x5849e9181190 in pymain_run_python Modules/main.c:634
+    #23 0x5849e9181398 in Py_RunMain Modules/main.c:714
+    #24 0x5849e91815ad in pymain_main Modules/main.c:744
+    #25 0x5849e9181932 in Py_BytesMain Modules/main.c:768
+    #26 0x5849e88acaa5 in main Programs/python.c:15
+    #27 0x74dcf122a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #28 0x74dcf122a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #29 0x5849e88ac9d4 in _start (/home/kotboris/pythonExp/bin/python3.12+0x11619d4) (BuildId: fbddf324ea1c9bb71b84fe62c4444fdd9a4fd6a3)
+
+Direct leak of 167 byte(s) in 1 object(s) allocated from:
+    #0 0x74dcf1efd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x5849e8c998a5 in _PyMem_RawMalloc Objects/obmalloc.c:45
+    #2 0x5849e8c9b292 in _PyMem_DebugRawAlloc Objects/obmalloc.c:2096
+    #3 0x5849e8c9b3a9 in _PyMem_DebugRawMalloc Objects/obmalloc.c:2129
+    #4 0x5849e8c9b3d3 in _PyMem_DebugMalloc Objects/obmalloc.c:2281
+    #5 0x5849e8c9ed03 in PyMem_Malloc Objects/obmalloc.c:703
+    #6 0x74dcf10d02cb in lib_build_cpython_func (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x262cb) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #7 0x74dcf10d0862 in lib_build_and_cache_attr (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x26862) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #8 0x74dcf10d12fc in lib_getattr (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x272fc) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #9 0x5849e8c978a8 in _PyObject_LookupAttr Objects/object.c:1124
+    #10 0x5849e8edbf88 in import_from Python/ceval.c:2535
+    #11 0x5849e8f482a3 in _PyEval_EvalFrameDefault Python/bytecodes.c:2151
+    #12 0x5849e8f8309e in _PyEval_EvalFrame Include/internal/pycore_ceval.h:89
+    #13 0x5849e8f833cf in _PyEval_Vector Python/ceval.c:1685
+    #14 0x5849e8f8370b in PyEval_EvalCode Python/ceval.c:580
+    #15 0x5849e90e3be1 in run_eval_code_obj Python/pythonrun.c:1757
+    #16 0x5849e90e3df8 in run_mod Python/pythonrun.c:1778
+    #17 0x5849e90e73bc in pyrun_file Python/pythonrun.c:1674
+    #18 0x5849e90ec12c in _PyRun_SimpleFileObject Python/pythonrun.c:459
+    #19 0x5849e90ec411 in _PyRun_AnyFileObject Python/pythonrun.c:78
+    #20 0x5849e917e1d1 in pymain_run_file_obj Modules/main.c:361
+    #21 0x5849e917e4ab in pymain_run_file Modules/main.c:380
+    #22 0x5849e9181190 in pymain_run_python Modules/main.c:634
+    #23 0x5849e9181398 in Py_RunMain Modules/main.c:714
+    #24 0x5849e91815ad in pymain_main Modules/main.c:744
+    #25 0x5849e9181932 in Py_BytesMain Modules/main.c:768
+    #26 0x5849e88acaa5 in main Programs/python.c:15
+    #27 0x74dcf122a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #28 0x74dcf122a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #29 0x5849e88ac9d4 in _start (/home/kotboris/pythonExp/bin/python3.12+0x11619d4) (BuildId: fbddf324ea1c9bb71b84fe62c4444fdd9a4fd6a3)
+
+Direct leak of 128 byte(s) in 1 object(s) allocated from:
+    #0 0x74dcf1efd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x5849e8c998a5 in _PyMem_RawMalloc Objects/obmalloc.c:45
+    #2 0x5849e8c9b292 in _PyMem_DebugRawAlloc Objects/obmalloc.c:2096
+    #3 0x5849e8c9b3a9 in _PyMem_DebugRawMalloc Objects/obmalloc.c:2129
+    #4 0x5849e8c9b3d3 in _PyMem_DebugMalloc Objects/obmalloc.c:2281
+    #5 0x5849e8c9ed03 in PyMem_Malloc Objects/obmalloc.c:703
+    #6 0x74dcf10d3eb4 in _my_Py_InitModule (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x29eb4) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #7 0x74dcf10d406c in b_init_cffi_1_0_external_module (/home/kotboris/pythonExp/lib/python3.12/site-packages/_cffi_backend.cpython-312-x86_64-linux-gnu.so+0x2a06c) (BuildId: 5b2225c347aec0c67666bb29c5ea7330b09c5fe5)
+    #8 0x5849e8c81b7b in cfunction_vectorcall_O Objects/methodobject.c:509
+    #9 0x5849e8b5999c in _PyObject_VectorcallTstate Include/internal/pycore_call.h:92
+    #10 0x5849e8b5a331 in _PyObject_CallFunctionVa Objects/call.c:562
+    #11 0x5849e8b5ad66 in callmethod Objects/call.c:634
+    #12 0x5849e8b5b00f in PyObject_CallMethod Objects/call.c:653
+    #13 0x74dcf141c50a in _cffi_init pysatl_tsp/_c.c:434
+    #14 0x74dcf141c50a in PyInit__c pysatl_tsp/_c.c:1178
+    #15 0x5849e906022e in _PyImport_LoadDynamicModuleWithSpec Python/importdl.c:169
+    #16 0x5849e905b18f in _imp_create_dynamic_impl Python/import.c:3789
+    #17 0x5849e905b274 in _imp_create_dynamic Python/clinic/import.c.h:506
+    #18 0x5849e8c8199d in cfunction_vectorcall_FASTCALL Objects/methodobject.c:422
+    #19 0x5849e8b5e177 in _PyVectorcall_Call Objects/call.c:271
+    #20 0x5849e8b5ed2c in _PyObject_Call Objects/call.c:354
+    #21 0x5849e8b5edc3 in PyObject_Call Objects/call.c:379
+    #22 0x5849e8f78593 in _PyEval_EvalFrameDefault Python/bytecodes.c:3263
+    #23 0x5849e8f8309e in _PyEval_EvalFrame Include/internal/pycore_ceval.h:89
+    #24 0x5849e8f833cf in _PyEval_Vector Python/ceval.c:1685
+    #25 0x5849e8b5903d in _PyFunction_Vectorcall Objects/call.c:419
+    #26 0x5849e8b5999c in _PyObject_VectorcallTstate Include/internal/pycore_call.h:92
+    #27 0x5849e8b5c4fa in object_vacall Objects/call.c:850
+    #28 0x5849e8b5c843 in PyObject_CallMethodObjArgs Objects/call.c:911
+    #29 0x5849e9057c91 in import_find_and_load Python/import.c:2793
+    #30 0x5849e905dcbf in PyImport_ImportModuleLevelObject Python/import.c:2876
+
+SUMMARY: AddressSanitizer: 708 byte(s) leaked in 4 allocation(s).
