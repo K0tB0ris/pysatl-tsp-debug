@@ -62,5 +62,7 @@ Memory leak than using C handlers in a pipeline
 [pipeline2](src/pipe2.py)
 [Log for Example1](src/res_pipe1.txt)
 
+address sanitazer ругается, только если использовать режим API в CFFI 
+[see](src/test/)
 
 
